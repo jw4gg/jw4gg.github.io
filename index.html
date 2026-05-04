@@ -455,7 +455,7 @@
   <div class="hero-prompt"><span>❯</span> whoami</div>
   <h1 class="hero-title">
     Hey, I'm <span class="name">jw4gg</span>.<br>
-    I build things.
+    I manage data.<br>I run infrastructure.
   </h1>
   <p class="hero-subtitle">
     <span id="typewriter"></span><span class="cursor"></span>
@@ -477,10 +477,11 @@
 <section id="about">
   <div class="reveal">
     <div class="section-label">// about</div>
-    <h2 class="section-title">Crafting ideas into<br>working software</h2>
+    <h2 class="section-title">Data, systems,<br>and a few nodes.</h2>
     <div class="about-text">
-      <p>I'm a developer who enjoys building clean, efficient, and impactful software. From low-level systems work to full-stack web development, I like understanding how things work under the hood.</p>
-      <p>When I'm not writing code, I'm exploring new tools, contributing to open source, or diving deep into whatever rabbit hole caught my attention that week.</p>
+      <p>Professionally, I work in data management — wrangling pipelines, maintaining integrity, and making information actually useful. My background is in Information Technology, and Perl and Python are the tools that have stuck around the longest.</p>
+      <p>Outside of work I run a homelab that's grown considerably past "just a server." Proxmox for virtualization, TrueNAS for storage, Portainer for keeping the containers honest. A mix of private and public services, some containerized, some not — built for utility rather than show.</p>
+      <p>Somewhere in there, a Bitcoin node hums along. Some Ethereum experience too. Nothing flashy — just a preference for running my own infrastructure and understanding what's actually happening on the wire.</p>
     </div>
     <div style="margin-top:2rem">
       <a href="https://github.com/jw4gg" class="btn btn-ghost" target="_blank" rel="noopener">
@@ -502,13 +503,16 @@
         <div class="t-line"><span class="prompt">❯ </span><span class="cmd">cat profile.json</span></div>
         <div class="t-line">{</div>
         <div class="t-line">&nbsp;&nbsp;<span class="key">"name"</span>: <span class="val">"jw4gg"</span>,</div>
-        <div class="t-line">&nbsp;&nbsp;<span class="key">"role"</span>: <span class="val">"Software Developer"</span>,</div>
-        <div class="t-line">&nbsp;&nbsp;<span class="key">"focus"</span>: [</div>
-        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">"Web Development"</span>,</div>
-        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">"Open Source"</span>,</div>
-        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">"Systems Programming"</span></div>
-        <div class="t-line">&nbsp;&nbsp;],</div>
-        <div class="t-line">&nbsp;&nbsp;<span class="key">"status"</span>: <span class="val">"Building cool stuff"</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"role"</span>: <span class="val">"Data Manager"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"education"</span>: <span class="val">"Information Technology"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"languages"</span>: [<span class="val">"Perl"</span>, <span class="val">"Python"</span>, <span class="val">"Bash"</span>, <span class="val">"YAML"</span>],</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"homelab"</span>: {</div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"hypervisor"</span>: <span class="val">"Proxmox"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"storage"</span>: <span class="val">"TrueNAS"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"containers"</span>: <span class="val">"Portainer"</span></div>
+        <div class="t-line">&nbsp;&nbsp;},</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"nodes"</span>: [<span class="val">"Bitcoin"</span>, <span class="val">"Ethereum"</span>],</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"status"</span>: <span class="val">"ssh'd into something"</span></div>
         <div class="t-line">}</div>
         <div class="t-line" style="margin-top:0.8rem"><span class="prompt">❯ </span><span class="cursor" style="display:inline-block"></span></div>
       </div>
@@ -526,69 +530,69 @@
   <div class="skills-grid">
     <div class="skill-card reveal">
       <div class="skill-card-header">
-        <div class="skill-icon">🌐</div>
+        <div class="skill-icon">🐍</div>
         <div>
-          <div class="skill-name">Frontend</div>
-          <div class="skill-category">UI / UX</div>
+          <div class="skill-name">Languages</div>
+          <div class="skill-category">Day-to-day tools</div>
         </div>
       </div>
       <div class="skill-tags">
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">React</span>
+        <span class="tag">Perl</span>
+        <span class="tag">Python</span>
+        <span class="tag">Bash</span>
+        <span class="tag">YAML</span>
+        <span class="tag">SQL</span>
       </div>
     </div>
 
     <div class="skill-card reveal" style="transition-delay:0.1s">
       <div class="skill-card-header">
-        <div class="skill-icon">⚙️</div>
+        <div class="skill-icon">🗄️</div>
         <div>
-          <div class="skill-name">Backend</div>
-          <div class="skill-category">Server / API</div>
+          <div class="skill-name">Data Management</div>
+          <div class="skill-category">Pipelines & integrity</div>
         </div>
       </div>
       <div class="skill-tags">
-        <span class="tag">Node.js</span>
-        <span class="tag">Python</span>
-        <span class="tag">REST</span>
-        <span class="tag">SQL</span>
+        <span class="tag">ETL</span>
+        <span class="tag">Data Pipelines</span>
         <span class="tag">PostgreSQL</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Data Validation</span>
       </div>
     </div>
 
     <div class="skill-card reveal" style="transition-delay:0.2s">
       <div class="skill-card-header">
-        <div class="skill-icon">🔧</div>
+        <div class="skill-icon">🏠</div>
         <div>
-          <div class="skill-name">Systems</div>
-          <div class="skill-category">Low-level / Infra</div>
+          <div class="skill-name">Homelab / Infra</div>
+          <div class="skill-category">Self-hosted everything</div>
         </div>
       </div>
       <div class="skill-tags">
-        <span class="tag">Linux</span>
-        <span class="tag">Git</span>
-        <span class="tag">Bash</span>
+        <span class="tag">Proxmox</span>
+        <span class="tag">TrueNAS</span>
         <span class="tag">Docker</span>
-        <span class="tag">CI/CD</span>
+        <span class="tag">Portainer</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Networking</span>
       </div>
     </div>
 
     <div class="skill-card reveal" style="transition-delay:0.3s">
       <div class="skill-card-header">
-        <div class="skill-icon">🛠️</div>
+        <div class="skill-icon">⛓️</div>
         <div>
-          <div class="skill-name">Tooling</div>
-          <div class="skill-category">Dev environment</div>
+          <div class="skill-name">Blockchain</div>
+          <div class="skill-category">Nodes & networks</div>
         </div>
       </div>
       <div class="skill-tags">
-        <span class="tag">Vim / Neovim</span>
-        <span class="tag">VS Code</span>
-        <span class="tag">GitHub</span>
-        <span class="tag">Webpack</span>
-        <span class="tag">Vite</span>
+        <span class="tag">Bitcoin Node</span>
+        <span class="tag">Ethereum</span>
+        <span class="tag">Self-hosted</span>
+        <span class="tag">Full Node</span>
       </div>
     </div>
   </div>
@@ -604,55 +608,60 @@
   <div class="projects-grid">
     <div class="project-card reveal">
       <div class="project-card-top">
-        <div class="project-icon">⚡</div>
+        <div class="project-icon">🏠</div>
         <div class="project-links">
           <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           </a>
         </div>
       </div>
-      <div class="project-name">Project Alpha</div>
-      <div class="project-desc">A placeholder for something awesome. Update this with your real projects and let your work speak for itself.</div>
+      <div class="project-name">Homelab Stack</div>
+      <div class="project-desc">A Proxmox-based homelab running a mix of VMs and LXC containers. TrueNAS handles storage, Portainer keeps the container sprawl manageable. Private and public services — some you'd recognize, some you wouldn't.</div>
       <div class="project-stack">
-        <span class="stack-tag">TypeScript</span>
-        <span class="stack-tag">React</span>
-        <span class="stack-tag">Node.js</span>
+        <span class="stack-tag">Proxmox</span>
+        <span class="stack-tag">TrueNAS</span>
+        <span class="stack-tag">Portainer</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Linux</span>
       </div>
     </div>
 
     <div class="project-card reveal" style="transition-delay:0.1s">
       <div class="project-card-top">
-        <div class="project-icon">🔭</div>
+        <div class="project-icon">🔗</div>
         <div class="project-links">
           <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           </a>
         </div>
       </div>
-      <div class="project-name">Project Beta</div>
-      <div class="project-desc">Another great project in progress. Replace these cards with your real repositories and actual descriptions.</div>
+      <div class="project-name">Node Operations</div>
+      <div class="project-desc">Self-hosted Bitcoin full node and Ethereum chain experience. Not for trading — for understanding. Verifying your own transactions, running your own infrastructure, trusting the math.</div>
       <div class="project-stack">
+        <span class="stack-tag">Bitcoin Core</span>
+        <span class="stack-tag">Ethereum</span>
+        <span class="stack-tag">Self-hosted</span>
         <span class="stack-tag">Python</span>
-        <span class="stack-tag">PostgreSQL</span>
-        <span class="stack-tag">Docker</span>
       </div>
     </div>
 
     <div class="project-card reveal" style="transition-delay:0.2s">
       <div class="project-card-top">
-        <div class="project-icon">🛸</div>
+        <div class="project-icon">🗂️</div>
         <div class="project-links">
           <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           </a>
         </div>
       </div>
-      <div class="project-name">This Page</div>
-      <div class="project-desc">jw4gg.github.io — a modern interactive GitHub profile built with vanilla HTML, CSS, and JavaScript. Zero dependencies.</div>
+      <div class="project-name">Data & Automation</div>
+      <div class="project-desc">Scripts and tooling written in Perl and Python to wrangle, validate, and move data. The kind of work that runs quietly in the background and only gets noticed when it stops.</div>
       <div class="project-stack">
-        <span class="stack-tag">HTML</span>
-        <span class="stack-tag">CSS</span>
-        <span class="stack-tag">Canvas API</span>
+        <span class="stack-tag">Perl</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">YAML</span>
+        <span class="stack-tag">SQL</span>
+        <span class="stack-tag">Bash</span>
       </div>
     </div>
   </div>
@@ -757,11 +766,12 @@
 
   /* ── Typewriter ── */
   const phrases = [
-    'software developer.',
-    'open source contributor.',
-    'terminal enthusiast.',
-    'problem solver.',
-    'perpetual learner.',
+    'data manager by day.',
+    'homelab operator by night.',
+    'perl & python developer.',
+    'self-hosting everything.',
+    'running nodes, not just code.',
+    'containers all the way down.',
   ];
   let pi = 0, ci = 0, deleting = false;
   const tw = document.getElementById('typewriter');
