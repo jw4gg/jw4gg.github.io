@@ -1,9 +1,850 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jw4gg</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg:       #0a0d0f;
+      --surface:  rgba(255,255,255,0.04);
+      --border:   rgba(255,255,255,0.08);
+      --accent:   #00ffaa;
+      --accent2:  #7c3aed;
+      --muted:    #4a5568;
+      --text:     #e2e8f0;
+      --subtext:  #94a3b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      overflow-x: hidden;
+    }
+
+    /* ── Canvas background ── */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10,13,15,0.7);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--subtext); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--subtext);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ── Sections ── */
+    section { position: relative; z-index: 1; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 8rem 10vw 4rem;
+    }
+
+    .hero-prompt {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .hero-prompt span { color: var(--accent); }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .hero-title .name { color: var(--accent); }
+
+    .hero-subtitle {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--subtext);
+      min-height: 2rem;
+    }
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--accent);
+      margin-left: 3px;
+      vertical-align: text-bottom;
+      animation: blink 0.9s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0d0f;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: transparent; color: var(--accent); box-shadow: 0 0 20px rgba(0,255,170,0.3); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--subtext);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: float 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { stroke: var(--muted); }
+    @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* ── About ── */
+    #about {
+      padding: 8rem 10vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text {
+      color: var(--subtext);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    .about-text p + p { margin-top: 1rem; }
+
+    .terminal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 0.82rem;
+    }
+    .terminal-bar {
+      background: rgba(255,255,255,0.06);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #28c840; }
+    .terminal-title { flex: 1; text-align: center; color: var(--muted); font-size: 0.75rem; }
+    .terminal-body { padding: 1.5rem; }
+    .t-line { margin-bottom: 0.6rem; color: var(--subtext); }
+    .t-line .prompt { color: var(--accent); }
+    .t-line .cmd { color: var(--text); }
+    .t-line .out { color: var(--subtext); }
+    .t-line .val { color: #f9a8d4; }
+    .t-line .key { color: #93c5fd; }
+
+    /* ── Skills ── */
+    #skills {
+      padding: 8rem 10vw;
+    }
+
+    .skills-header { text-align: center; margin-bottom: 4rem; }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .skills-grid .skill-card { width: 280px; flex-shrink: 0; }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .skill-card:hover {
+      border-color: rgba(0,255,170,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,255,170,0.08);
+    }
+
+    .skill-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .skill-icon {
+      font-size: 1.5rem;
+      width: 2.5rem;
+      text-align: center;
+    }
+    .skill-name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .skill-category { font-size: 0.7rem; color: var(--muted); }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      background: rgba(0,255,170,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(0,255,170,0.15);
+    }
+
+    /* ── Projects ── */
+    #projects {
+      padding: 8rem 10vw;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .projects-header { text-align: center; margin-bottom: 4rem; }
+
+    .projects-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .projects-grid .project-card { width: 340px; flex-shrink: 0; }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card:hover {
+      border-color: rgba(124,58,237,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(124,58,237,0.1);
+    }
+
+    .project-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .project-icon { font-size: 1.75rem; }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .project-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    .project-name { font-size: 1.05rem; font-weight: 700; }
+    .project-desc { font-size: 0.85rem; color: var(--subtext); line-height: 1.6; }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+    .stack-tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      background: rgba(124,58,237,0.1);
+      color: #a78bfa;
+      border: 1px solid rgba(124,58,237,0.2);
+    }
+
+    /* ── Contact ── */
+    #contact {
+      padding: 8rem 10vw;
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-desc {
+      color: var(--subtext);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      font-size: 0.95rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--subtext);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 20px rgba(0,255,170,0.1);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Intersection animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { gap: 1rem; }
+      .hero-cta { flex-direction: column; }
+    }
+  </style>
+</head>
 <body>
-  <h1>jw4gg</h1>
-  <p>x</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
-</body>
 
+<canvas id="bg-canvas"></canvas>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo"><span>~/</span>jw4gg</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-prompt"><span>❯</span> whoami</div>
+  <h1 class="hero-title">
+    Hey, I'm <span class="name">jw4gg</span>.<br>
+    I manage data.<br>I run infrastructure.
+  </h1>
+  <p class="hero-subtitle">
+    <span id="typewriter"></span><span class="cursor"></span>
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      View Projects
+    </a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">// about</div>
+    <h2 class="section-title">Data, systems,<br>and a few nodes.</h2>
+    <div class="about-text">
+      <p>Professionally, I work in data management; wrangling pipelines, maintaining integrity, and making information actually useful. My background is in Information Technology, and XML, Perl, and Python are the tools that have stuck around the longest.</p>
+      <p>Outside of work I run a homelab that's grown considerably past "just a server." Proxmox for virtualization, TrueNAS for storage, Portainer for stack deployment and keeping the containers honest. A mix of private and public services, some containerized, some not. Built for utility rather than show.</p>
+      <p>Somewhere in there, a Bitcoin node hums along. Some Ethereum experience too. Nothing flashy; just a preference for running my own infrastructure and understanding what's actually happening on the wire.</p>
+    </div>
+    <div style="margin-top:2rem">
+      <a href="https://github.com/jw4gg" class="btn btn-ghost" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub Profile
+      </a>
+    </div>
+  </div>
+
+  <div class="reveal" style="transition-delay:0.15s">
+    <div class="terminal-card">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <div class="terminal-title">jw4gg — zsh</div>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="prompt">❯ </span><span class="cmd">cat profile.json</span></div>
+        <div class="t-line">{</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"name"</span>: <span class="val">"jw4gg"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"role"</span>: <span class="val">"Data Manager"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"education"</span>: <span class="val">"Information Technology"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"languages"</span>: [<span class="val">"Perl"</span>, <span class="val">"Python"</span>, <span class="val">"XML"</span>, <span class="val">"YAML"</span>],</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"homelab"</span>: {</div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"hypervisor"</span>: <span class="val">"Proxmox"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"storage"</span>: <span class="val">"TrueNAS"</span>,</div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"containers"</span>: <span class="val">"Portainer"</span></div>
+        <div class="t-line">&nbsp;&nbsp;},</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"nodes"</span>: [<span class="val">"Bitcoin"</span>, <span class="val">"Ethereum"</span>],</div>
+        <div class="t-line">&nbsp;&nbsp;<span class="key">"status"</span>: <span class="val">"ssh'd into something"</span></div>
+        <div class="t-line">}</div>
+        <div class="t-line" style="margin-top:0.8rem"><span class="prompt">❯ </span><span class="cursor" style="display:inline-block"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="skills-header reveal">
+    <div class="section-label">// skills</div>
+    <h2 class="section-title">What I work with</h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-header">
+        <div class="skill-icon">🐍</div>
+        <div>
+          <div class="skill-name">Languages</div>
+          <div class="skill-category">Day-to-day tools</div>
+        </div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Perl</span>
+        <span class="tag">Python</span>
+        <span class="tag">XML</span>
+        <span class="tag">YAML</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal" style="transition-delay:0.1s">
+      <div class="skill-card-header">
+        <div class="skill-icon">🗄️</div>
+        <div>
+          <div class="skill-name">Data Management</div>
+          <div class="skill-category">Pipelines & integrity</div>
+        </div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">S1000D</span>
+        <span class="tag">Automation</span>
+        <span class="tag">CSDB</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Data Validation</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal" style="transition-delay:0.2s">
+      <div class="skill-card-header">
+        <div class="skill-icon">🏠</div>
+        <div>
+          <div class="skill-name">Homelab / Infra</div>
+          <div class="skill-category">Self-hosted everything</div>
+        </div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Proxmox</span>
+        <span class="tag">TrueNAS</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Portainer</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Networking</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal" style="transition-delay:0.3s">
+      <div class="skill-card-header">
+        <div class="skill-icon">⛓️</div>
+        <div>
+          <div class="skill-name">Blockchain</div>
+          <div class="skill-category">Nodes & networks</div>
+        </div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Bitcoin Node</span>
+        <span class="tag">Ethereum</span>
+        <span class="tag">Self-hosted</span>
+        <span class="tag">Full Node</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <div class="section-label">// projects</div>
+    <h2 class="section-title">Things I've built</h2>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🏠</div>
+        <div class="project-links">
+          <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-name">Homelab Stack</div>
+      <div class="project-desc">A Proxmox-based homelab running a mix of VMs and LXC containers. TrueNAS handles storage, Portainer keeps the container sprawl manageable. Private and public services; some you'd recognize, some you wouldn't.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Proxmox</span>
+        <span class="stack-tag">TrueNAS</span>
+        <span class="stack-tag">Portainer</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Linux</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-card-top">
+        <div class="project-icon">🔗</div>
+        <div class="project-links">
+          <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-name">Node Operations</div>
+      <div class="project-desc">Self-hosted Bitcoin full node and Ethereum blockchain experience. Not for just for trading; for understanding. Verifying transactions, running infrastructure.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Bitcoin Core</span>
+        <span class="stack-tag">Ethereum</span>
+        <span class="stack-tag">Self-hosted</span>
+        <span class="stack-tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.3s">
+      <div class="project-card-top">
+        <div class="project-icon">📈</div>
+        <div class="project-links">
+          <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-name">Stocky</div>
+      <div class="project-desc">A Python Discord bot that delivers real-time stock market data. Fetches live quotes via Alpha Vantage, renders price charts with yFinance, and surfaces financial news through Finnhub; all inside a single message with interactive buttons to switch timeframes (1D, 5D, 1M, and more).</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Discord.py</span>
+        <span class="stack-tag">Alpha Vantage</span>
+        <span class="stack-tag">yFinance</span>
+        <span class="stack-tag">Finnhub</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.2s">
+      <div class="project-card-top">
+        <div class="project-icon">🗂️</div>
+        <div class="project-links">
+          <a href="https://github.com/jw4gg" class="project-link" target="_blank" rel="noopener" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-name">Data & Automation</div>
+      <div class="project-desc">Scripts and tooling written in Perl and Python to wrangle, validate, and move data. The kind of work that runs quietly in the background and only gets noticed when it stops.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Perl</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">YAML</span>
+        <span class="stack-tag">SQL</span>
+        <span class="stack-tag">XML</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label reveal">// contact</div>
+    <h2 class="section-title reveal">Let's connect</h2>
+    <p class="contact-desc reveal">Whether it's a project idea, a question, or just to say hey; my inbox is open.</p>
+    <div class="social-links reveal">
+      <a href="https://github.com/jw4gg" class="social-link" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="color:var(--muted)">built by </span><span style="color:var(--accent)">jw4gg</span>
+</footer>
+
+<script>
+  /* ── Particle canvas ── */
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function mkParticle() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 1.5 + 0.3,
+      alpha: Math.random() * 0.6 + 0.1,
+    };
+  }
+
+  function initParticles() {
+    particles = Array.from({ length: 120 }, mkParticle);
+  }
+
+  let mouse = { x: -9999, y: -9999 };
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+
+      // mouse repulsion
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100) {
+        p.x += dx / dist * 1.5;
+        p.y += dy / dist * 1.5;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,255,170,${p.alpha})`;
+      ctx.fill();
+
+      // lines between close particles
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const qx = p.x - q.x, qy = p.y - q.y;
+        const d = Math.sqrt(qx * qx + qy * qy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(0,255,170,${0.15 * (1 - d / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); initParticles(); });
+  resize();
+  initParticles();
+  draw();
+
+  /* ── Typewriter ── */
+  const phrases = [
+    'data manager by day.',
+    'homelab operator by night.',
+    'perl & python developer.',
+    'self-hosting everything.',
+    'running nodes, not just code.',
+    'containers all the way down.',
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const tw = document.getElementById('typewriter');
+
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      tw.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+      setTimeout(type, 60 + Math.random() * 40);
+    } else {
+      tw.textContent = phrase.slice(0, --ci);
+      if (ci === 0) {
+        deleting = false;
+        pi = (pi + 1) % phrases.length;
+        setTimeout(type, 400);
+        return;
+      }
+      setTimeout(type, 30 + Math.random() * 20);
+    }
+  }
+  setTimeout(type, 800);
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Active nav highlight ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.style.color = '');
+        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (active) active.style.color = 'var(--accent)';
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
 </html>
