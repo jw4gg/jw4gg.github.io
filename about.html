@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — jw4gg</title>
+  <meta name="description" content="A bit more about jw4gg: background, current focus, and what's on the lab." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="uses.html">Uses</a></li>
+    <li><a href="notes.html">Notes</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">~</a><span class="sep">/</span>about
+  </div>
+  <h1>A <span class="accent">slightly</span> longer version.</h1>
+  <p class="lede">The landing page is the elevator pitch. This is the part where I actually have room to write.</p>
+</header>
+
+<div class="page-grid">
+  <article class="prose-inner reveal">
+    <h2><span class="marker">#</span>Background</h2>
+    <p>My dad was a systems administrator. We had multiple PCs around the house, networking gear in places it probably shouldn't have been, and servers humming in the background. Every couple of years we'd build new machines from parts.</p>
+    <p>One of my earliest computer memories is booting <em>Crusader: No Remorse</em> off a floppy in DOS as a kid. My dad got me into IT and that interest never really went away.</p>
+    <p>My formal background is Information Technology. I've done support, sysadmin work, and now data management. The pattern is the same in all three roles: something is wrong, figure out why, fix it without making things worse.</p>
+
+    <h2><span class="marker">#</span>What I work on</h2>
+    <p>Most of my day job is structured data. Specifications written in XML, validated against schemas, transformed by Perl, queried with SQL. Not glamorous, but a surprising amount of the world still runs on this kind of plumbing.</p>
+    <p>After hours I mostly write Python. A Discord bot, scripts that pull data from APIs, glue code between systems that don't talk to each other natively. I started keeping a <a href="notes.html">notes</a> page to write some of it down.</p>
+
+    <h2><span class="marker">#</span>The homelab</h2>
+    <p>One Proxmox host. A few Ubuntu server VMs, a TrueNAS VM for storage, and a handful of LXC containers. Docker lives inside one of the VMs so the Proxmox host stays clean. Portainer keeps me from forgetting which container does what.</p>
+    <p>Running today: reverse proxy, dashboards, media services, a Bitcoin full node, a self-hosted mining pool, backups, monitoring, the usual sysadmin furniture. There's a longer write-up on the <a href="projects/homelab.html">homelab page</a>.</p>
+    <p>One rule I try to keep: don't run anything I haven't at least skimmed the docs for. It has slowed me down more than once. Still worth it.</p>
+
+    <h2><span class="marker">#</span>Bitcoin, nodes, and a pool</h2>
+    <p>The short version: more nodes is better. Bitcoin is interesting to me because the network is distributed by people choosing to participate in it, and I'd rather be one more of those people than not.</p>
+    <p>I run a full node and a small self-hosted pool I solo-mine to. The pool isn't going to outpace AntPool. That isn't why it's there. Solo mining to a pool of my own is a different kind of participation than just running a node, and both add a little redundancy to a network that benefits from it.</p>
+    <p>I also hold and occasionally trade some BTC and ETH. That part is separate from the infrastructure side.</p>
+
+    <h2 id="now"><span class="marker">#</span>Now</h2>
+    <p>A short list of what's actually in front of me.</p>
+    <ul class="now-list">
+      <li>Cleaning up local DNS. Blocking trackers and noisy lookups across the network without breaking Amazon (which is, apparently, the hard part).</li>
+      <li>Pulling a backlog of Perl scripts out of various projects and getting them into GitHub. Some have been running quietly for six or seven years.</li>
+      <li>Reading <em>Just for Fun: The Story of an Accidental Revolutionary</em> by Linus Torvalds.</li>
+    </ul>
+  </article>
+
+  <aside class="sidebar reveal" style="transition-delay:0.1s">
+    <div class="meta-card">
+      <h4>// at a glance</h4>
+      <dl>
+        <dt>Role</dt>
+        <dd>Data manager</dd>
+        <dt>Writes</dt>
+        <dd>Perl, Python, XML, SQL</dd>
+        <dt>Runs</dt>
+        <dd>Proxmox, TrueNAS, Docker</dd>
+        <dt>Also runs</dt>
+        <dd>Bitcoin full node + solo pool</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// find me</h4>
+      <dl>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/jw4gg" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none">@jw4gg</a></dd>
+        <dt>Discord</dt>
+        <dd><button type="button" data-copy="jwagg" title="Click to copy" style="background:transparent; border:none; padding:0; font-family:inherit; font-size:inherit; cursor:pointer; color:var(--accent)"><span class="copy-label">@jwagg</span></button></dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// currently reading</h4>
+      <dl>
+        <dt>Book</dt>
+        <dd><em>Just for Fun: The Story of an Accidental Revolutionary</em> &mdash; Linus Torvalds</dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+
+<div class="page-nav">
+  <a href="index.html">← Home</a>
+  <a href="projects.html">Projects →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

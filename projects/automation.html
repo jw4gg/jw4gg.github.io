@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data &amp; Automation — jw4gg</title>
+  <meta name="description" content="Perl and Python scripts that move and validate structured data. Some of them have been running for years." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../uses.html">Uses</a></li>
+    <li><a href="../notes.html">Notes</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="../index.html">~</a><span class="sep">/</span><a href="../projects.html">projects</a><span class="sep">/</span>data &amp; automation
+  </div>
+  <h1>Scripts that have been <span class="accent">running</span> longer than most of my hardware.</h1>
+  <p class="lede">A growing collection of Perl and Python that moves, validates, and transforms structured data. Some of it I wrote yesterday. Some of it I wrote six or seven years ago and just haven't had to touch since.</p>
+</header>
+
+<div class="page-grid">
+  <article class="prose-inner reveal">
+    <h2><span class="marker">#</span>What's in here</h2>
+    <p>This isn't a single project. It's the pile of scripts and small tools I've written and kept across different jobs and side projects. Most of them do something narrow and unglamorous:</p>
+    <ul>
+      <li>Pull data from one system, validate the shape of it, hand it to another system.</li>
+      <li>Walk through a tree of XML, fix the broken bits, write it back out.</li>
+      <li>Query a database, reshape the rows, hand them to a downstream job.</li>
+      <li>Watch a directory, react when a file shows up, log what happened.</li>
+    </ul>
+    <p>The kind of thing that doesn't make for an interesting screenshot but has saved a lot of hours.</p>
+
+    <h2><span class="marker">#</span>Why Perl is still here</h2>
+    <p>A lot of the older scripts are Perl, and they're staying that way. Perl's regex story and its grip on text processing are still genuinely good. More importantly: these scripts work. They've been working for years. There's no business case for rewriting them in Python just because Python is the language I write more often now.</p>
+    <p>So they get cleaned up, documented a little better, and committed.</p>
+
+    <h2><span class="marker">#</span>What I'm doing with them now</h2>
+    <p>Gradually pulling them out of various project folders and getting them into <a href="https://github.com/jw4gg" target="_blank" rel="noopener">GitHub</a>. Some need a quick scrub for embedded paths or credentials before they can go public. Some get a README I should have written when I wrote the script.</p>
+    <p>It's slow work. It's also the kind of work that's easy to put off, which is why I'm doing it on purpose.</p>
+  </article>
+
+  <aside class="sidebar reveal" style="transition-delay:0.1s">
+    <div class="meta-card">
+      <h4>// status</h4>
+      <dl>
+        <dt>State</dt>
+        <dd>Ongoing</dd>
+        <dt>Oldest</dt>
+        <dd>~6&ndash;7 years</dd>
+        <dt>Goal</dt>
+        <dd>Import to GitHub</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// stack</h4>
+      <dl>
+        <dt>Languages</dt>
+        <dd>Perl, Python</dd>
+        <dt>Data</dt>
+        <dd>XML, SQL</dd>
+        <dt>Glue</dt>
+        <dd>cron, shell</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// links</h4>
+      <dl>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/jw4gg" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none">@jw4gg</a></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+
+<div class="page-nav">
+  <a href="stocky.html">← Stocky</a>
+  <a href="../projects.html">All projects →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

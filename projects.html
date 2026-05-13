@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — jw4gg</title>
+  <meta name="description" content="Projects, homelab work, and code I've written and kept." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="uses.html">Uses</a></li>
+    <li><a href="notes.html">Notes</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">~</a><span class="sep">/</span>projects
+  </div>
+  <h1>Things I've <span class="accent">built</span> and kept.</h1>
+  <p class="lede">Some of these are still running. A few have been quietly working for years. None of them are finished, because nothing ever is.</p>
+</header>
+
+<section style="padding: 2rem 2rem 6rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 1">
+  <div class="projects-grid">
+
+    <a href="projects/homelab.html" class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-icon">🏠</div>
+        <div class="project-links">
+          <span class="project-link" title="Read more">→</span>
+        </div>
+      </div>
+      <div class="project-name">Homelab</div>
+      <div class="project-desc">A Proxmox host running a few Ubuntu server VMs, a TrueNAS VM, and a handful of LXC containers. Docker lives inside one of those VMs with Portainer in front of it. Mostly private services I use day-to-day, a few exposed publicly.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Proxmox</span>
+        <span class="stack-tag">Ubuntu</span>
+        <span class="stack-tag">TrueNAS</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Portainer</span>
+        <span class="stack-tag">LXC</span>
+      </div>
+    </a>
+
+    <a href="projects/nodes.html" class="project-card reveal" style="transition-delay:0.05s">
+      <div class="project-card-top">
+        <div class="project-icon">🔗</div>
+        <div class="project-links">
+          <span class="project-link" title="Read more">→</span>
+        </div>
+      </div>
+      <div class="project-name">Nodes &amp; Mining</div>
+      <div class="project-desc">A Bitcoin full node plus a small self-hosted pool I solo-mine to. Some BTC and ETH trading on the side. The infrastructure side is mostly about adding another node to the distributed network.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Bitcoin Core</span>
+        <span class="stack-tag">Solo Pool</span>
+        <span class="stack-tag">Ethereum</span>
+        <span class="stack-tag">Self-hosted</span>
+      </div>
+    </a>
+
+    <a href="projects/stocky.html" class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-card-top">
+        <div class="project-icon">📈</div>
+        <div class="project-links">
+          <span class="project-link" title="Read more">→</span>
+        </div>
+      </div>
+      <div class="project-name">Stocky</div>
+      <div class="project-desc">A Discord bot in Python. Pulls real-time quotes from Alpha Vantage, draws price charts via yFinance, and grabs headlines from Finnhub. One message, buttons to flip between 1D, 5D, 1M and more.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Discord.py</span>
+        <span class="stack-tag">Alpha Vantage</span>
+        <span class="stack-tag">yFinance</span>
+        <span class="stack-tag">Finnhub</span>
+      </div>
+    </a>
+
+    <a href="projects/automation.html" class="project-card reveal" style="transition-delay:0.15s">
+      <div class="project-card-top">
+        <div class="project-icon">🗂️</div>
+        <div class="project-links">
+          <span class="project-link" title="Read more">→</span>
+        </div>
+      </div>
+      <div class="project-name">Data &amp; Automation</div>
+      <div class="project-desc">Perl and Python scripts that move and validate structured data. Running as needed and generating reports. Some I've been running for six or seven years. Gradually getting cleaned up and imported to GitHub.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Perl</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">XML</span>
+        <span class="stack-tag">SQL</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div style="text-align:center; margin-top: 5rem; color: var(--muted); font-size: 0.85rem">
+    <p>More to come as I clean things up and write them down.</p>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="about.html">← About</a>
+  <a href="uses.html">Uses →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

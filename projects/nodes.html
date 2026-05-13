@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nodes &amp; Mining — jw4gg</title>
+  <meta name="description" content="Running a Bitcoin full node and a self-hosted solo mining pool." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../uses.html">Uses</a></li>
+    <li><a href="../notes.html">Notes</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="../index.html">~</a><span class="sep">/</span><a href="../projects.html">projects</a><span class="sep">/</span>nodes &amp; mining
+  </div>
+  <h1>Nodes, mining, <span class="accent">and the rest</span>.</h1>
+  <p class="lede">A Bitcoin full node, a BitAxe pointed at a pool I run myself, and some BTC and ETH I hold and occasionally trade. The infrastructure side is mostly about being a participant rather than relying on someone else's.</p>
+</header>
+
+<div class="page-grid">
+  <article class="prose-inner reveal">
+    <h2><span class="marker">#</span>The node</h2>
+    <p>A Bitcoin full node runs alongside everything else on the homelab. It validates blocks, keeps a full copy of the chain, and isn't trusting any third party to tell it what's true.</p>
+    <p>This is, on its own, not very interesting to watch. That's kind of the point. A node that's doing its job is one you don't have to think about.</p>
+
+    <h2><span class="marker">#</span>The miner</h2>
+    <p>The hardware side is a <a href="https://bitaxe.org" target="_blank" rel="noopener">BitAxe</a>. It's an open-source, single-chip ASIC small enough to sit on a desk and quiet enough to share a room with. The hash rate is modest. That isn't the point. The point is that it's a Bitcoin miner I can take apart, understand, and actually own.</p>
+
+    <h2><span class="marker">#</span>The pool</h2>
+    <p>The BitAxe points at a pool I run myself. The software is open-source public-pool code. The only thing public about it in my case is the implementation. I'm the only miner connected to it.</p>
+    <p>So this is solo mining, routed through a pool I control. If the BitAxe ever lucks into a block, the reward lands directly in my wallet without a pool operator skimming a cut. If it never does, that's also fine. Running the pool is the interesting part.</p>
+    <p>Bigger picture: the node says "I'll verify everything for myself." The miner-and-pool combo says "I'll contribute my own small share of work, on my own terms." Both add a little redundancy to a network that benefits from having more of both.</p>
+
+    <h2><span class="marker">#</span>Holding and trading</h2>
+    <p>Separate from the infrastructure side, I do hold and occasionally trade BTC and ETH. That part isn't connected to the node or the pool. The reasons there are different (and shorter to explain).</p>
+
+    <h2><span class="marker">#</span>Why bother</h2>
+    <p>The short answer is that distributed networks only stay distributed if people keep choosing to participate in them. The longer answer is that running things yourself teaches you what they actually do, and that lesson generalizes to everything else you touch.</p>
+    <p>It's also one of the few places left where you can run real infrastructure for what it costs to run a small server. That keeps it interesting.</p>
+  </article>
+
+  <aside class="sidebar reveal" style="transition-delay:0.1s">
+    <div class="meta-card">
+      <h4>// status</h4>
+      <dl>
+        <dt>Node</dt>
+        <dd>Synced &amp; running</dd>
+        <dt>Miner</dt>
+        <dd>BitAxe (open source)</dd>
+        <dt>Pool</dt>
+        <dd>Self-hosted, solo</dd>
+        <dt>Network</dt>
+        <dd>Bitcoin mainnet</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// stack</h4>
+      <dl>
+        <dt>Node</dt>
+        <dd>Bitcoin Core</dd>
+        <dt>Miner</dt>
+        <dd>BitAxe</dd>
+        <dt>Pool</dt>
+        <dd>Public-pool (self-hosted)</dd>
+        <dt>Also</dt>
+        <dd>ETH (held)</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// related</h4>
+      <dl>
+        <dt>Lives on</dt>
+        <dd><a href="homelab.html" style="color:var(--accent); text-decoration:none">Homelab →</a></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+
+<div class="page-nav">
+  <a href="homelab.html">← Homelab</a>
+  <a href="stocky.html">Stocky →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

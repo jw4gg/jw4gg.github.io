@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes — jw4gg</title>
+  <meta name="description" content="Writing about the homelab, scripts, nodes, and whatever else." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="uses.html">Uses</a></li>
+    <li><a href="notes.html" class="active">Notes</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">~</a><span class="sep">/</span>notes
+  </div>
+  <h1>Notes <span class="accent">in progress</span>.</h1>
+  <p class="lede">Short write-ups about things I've broken, fixed, or built. Mostly so I don't forget how next time.</p>
+</header>
+
+<section style="padding: 1rem 2rem 4rem; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1">
+
+  <div class="reveal" style="border: 1px dashed var(--border); border-radius: 12px; padding: 3rem 2rem; text-align: center; color: var(--muted); margin-bottom: 3rem">
+    <p style="font-size: 0.95rem; color: var(--subtext); margin-bottom: 0.5rem">No posts yet.</p>
+    <p style="font-size: 0.85rem">First one will probably be about DNS-level tracker blocking without breaking Amazon. Apparently that's harder than it sounds.</p>
+  </div>
+
+  <h2 style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem">// drafts on the bench</h2>
+
+  <ul class="post-list">
+    <li>
+      <time>soon</time>
+      <div>
+        <span class="post-title" style="color: var(--subtext); cursor: default">Cleaning up local DNS without breaking everything</span>
+        <p class="post-summary">A pass through the homelab's DNS to block trackers and noisy lookups, plus the list of services that don't appreciate it.</p>
+        <div class="post-tags">
+          <span class="tag">DNS</span>
+          <span class="tag">Networking</span>
+          <span class="tag">Homelab</span>
+        </div>
+      </div>
+    </li>
+    <li>
+      <time>soon</time>
+      <div>
+        <span class="post-title" style="color: var(--subtext); cursor: default">Running a solo Bitcoin pool at home</span>
+        <p class="post-summary">What the setup looks like, why I bothered, and what I learned about how pools actually work.</p>
+        <div class="post-tags">
+          <span class="tag">Bitcoin</span>
+          <span class="tag">Self-hosted</span>
+        </div>
+      </div>
+    </li>
+    <li>
+      <time>later</time>
+      <div>
+        <span class="post-title" style="color: var(--subtext); cursor: default">Bringing six-year-old Perl scripts into git</span>
+        <p class="post-summary">Notes on importing scripts that have been running quietly in production longer than some startups have existed.</p>
+        <div class="post-tags">
+          <span class="tag">Perl</span>
+          <span class="tag">Git</span>
+          <span class="tag">Cleanup</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+</section>
+
+<div class="page-nav">
+  <a href="uses.html">← Uses</a>
+  <a href="index.html#contact">Contact →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

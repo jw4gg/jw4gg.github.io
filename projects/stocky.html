@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stocky — jw4gg</title>
+  <meta name="description" content="A Python Discord bot for live stock quotes, price charts, and news." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../uses.html">Uses</a></li>
+    <li><a href="../notes.html">Notes</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="../index.html">~</a><span class="sep">/</span><a href="../projects.html">projects</a><span class="sep">/</span>stocky
+  </div>
+  <h1>Stocky<span class="accent">.</span></h1>
+  <p class="lede">A Discord bot in Python that turns a ticker symbol into a single, useful message: live quote, chart, news, all in one place.</p>
+</header>
+
+<div class="page-grid">
+  <article class="prose-inner reveal">
+    <h2><span class="marker">#</span>What it does</h2>
+    <p>You give it a ticker. It gives you back:</p>
+    <ul>
+      <li>A real-time quote from Alpha Vantage.</li>
+      <li>A price chart drawn with yFinance data.</li>
+      <li>Recent headlines for the symbol from Finnhub.</li>
+    </ul>
+    <p>All of it in a single Discord message. The chart timeframe (1D, 5D, 1M, and longer) is switched with buttons attached to the message itself, so you don't have to keep re-asking the bot.</p>
+
+    <h2><span class="marker">#</span>Why I wrote it</h2>
+    <p>I wanted one place to glance at a ticker without bouncing between three different apps. The Discord part is convenient because that's where I already hang out, and Discord's button components are exactly the right shape for "show me the same thing on a different timeframe."</p>
+
+    <h2><span class="marker">#</span>Architecture</h2>
+    <p>Python, using <code>discord.py</code> for the bot side. Three data sources stitched together:</p>
+    <ul>
+      <li><strong>Alpha Vantage</strong> for live quotes.</li>
+      <li><strong>yFinance</strong> for historical price data the charts get drawn from.</li>
+      <li><strong>Finnhub</strong> for news headlines.</li>
+    </ul>
+    <p>Charts are rendered server-side and attached to the response. The buttons re-invoke the chart logic with a different range and edit the original message rather than spamming new ones.</p>
+
+    <h2><span class="marker">#</span>Status</h2>
+    <p>Working and in use. The most recent round of updates brought it up to Discord's newer interaction patterns so it stops getting yelled at by the deprecation warnings.</p>
+  </article>
+
+  <aside class="sidebar reveal" style="transition-delay:0.1s">
+    <div class="meta-card">
+      <h4>// status</h4>
+      <dl>
+        <dt>State</dt>
+        <dd>Active</dd>
+        <dt>Latest</dt>
+        <dd>Updated for new Discord interactions</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// stack</h4>
+      <dl>
+        <dt>Language</dt>
+        <dd>Python</dd>
+        <dt>Bot</dt>
+        <dd>discord.py</dd>
+        <dt>Data</dt>
+        <dd>Alpha Vantage, yFinance, Finnhub</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// links</h4>
+      <dl>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/jw4gg" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none">@jw4gg</a></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+
+<div class="page-nav">
+  <a href="nodes.html">← Nodes &amp; Mining</a>
+  <a href="automation.html">Data &amp; Automation →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

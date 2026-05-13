@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homelab — jw4gg</title>
+  <meta name="description" content="A Proxmox-based homelab: Ubuntu VMs, TrueNAS, LXC, Docker, and a Bitcoin full node." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span>~/</span>jw4gg</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../uses.html">Uses</a></li>
+    <li><a href="../notes.html">Notes</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb">
+    <a href="../index.html">~</a><span class="sep">/</span><a href="../projects.html">projects</a><span class="sep">/</span>homelab
+  </div>
+  <h1>The <span class="accent">homelab</span>.</h1>
+  <p class="lede">One Proxmox box doing more than it probably should, plus a NAS, plus a small pool I solo-mine to. Built to be useful, not impressive.</p>
+</header>
+
+<div class="page-grid">
+  <article class="prose-inner reveal">
+    <h2><span class="marker">#</span>Layout</h2>
+    <p>One Proxmox host carries the whole thing. On top of it:</p>
+    <ul>
+      <li>A few Ubuntu server VMs for things that want a real OS to themselves.</li>
+      <li>A TrueNAS VM that handles storage (with the disks passed through directly, not virtualized).</li>
+      <li>A handful of LXC containers for lighter services where a full VM would be overkill.</li>
+      <li>A Docker host running inside one of the Ubuntu VMs, with Portainer in front so I don't lose track of what's deployed where.</li>
+    </ul>
+    <p>The reasoning is mostly about blast radius. If I break a container, I only break a container. If I break the Docker VM, the Proxmox host is still fine. If TrueNAS goes sideways, the VMs on the other disks keep humming.</p>
+
+    <h2><span class="marker">#</span>Running today</h2>
+    <p>A non-exhaustive list of what's currently up:</p>
+    <ul>
+      <li>Reverse proxy fronting the services that get exposed publicly.</li>
+      <li>Dashboards and monitoring (you start running services, you start needing to know when they stop).</li>
+      <li>Media services for the household and family.</li>
+      <li>A Bitcoin full node, plus a self-hosted pool I solo-mine to. <a href="nodes.html">More on that here.</a></li>
+      <li>Backups for the things that would hurt to lose.</li>
+      <li>A pile of smaller stuff: DNS, ad/tracker blocking, a few utilities, the usual sysadmin furniture.</li>
+    </ul>
+
+    <h2><span class="marker">#</span>Rules I try to follow</h2>
+    <p>Not formal, just things I've learned by doing the opposite first:</p>
+    <ul>
+      <li>Don't deploy anything I haven't at least skimmed the docs for.</li>
+      <li>If a service can be private, it stays private.</li>
+      <li>Backups aren't backups until they've been restored at least once.</li>
+      <li>If I can't explain why a container is running, it shouldn't be running.</li>
+    </ul>
+
+    <h2><span class="marker">#</span>What's next</h2>
+    <p>Right now: cleaning up local DNS to block trackers across the whole network without breaking the handful of services that get unreasonably picky about it. Apparently Amazon is the hard part.</p>
+    <p>After that: documenting more of this in <a href="../notes.html">notes</a> so I stop relying on memory.</p>
+  </article>
+
+  <aside class="sidebar reveal" style="transition-delay:0.1s">
+    <div class="meta-card">
+      <h4>// status</h4>
+      <dl>
+        <dt>State</dt>
+        <dd>Active &amp; growing</dd>
+        <dt>Started</dt>
+        <dd>Years ago, in stages</dd>
+        <dt>Public</dt>
+        <dd>Partially</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// stack</h4>
+      <dl>
+        <dt>Hypervisor</dt>
+        <dd>Proxmox</dd>
+        <dt>Storage</dt>
+        <dd>TrueNAS</dd>
+        <dt>Guests</dt>
+        <dd>Ubuntu Server, LXC</dd>
+        <dt>Containers</dt>
+        <dd>Docker + Portainer</dd>
+      </dl>
+    </div>
+
+    <div class="meta-card">
+      <h4>// related</h4>
+      <dl>
+        <dt>Reading</dt>
+        <dd><a href="nodes.html" style="color:var(--accent); text-decoration:none">Nodes &amp; Mining →</a></dd>
+        <dt>Setup</dt>
+        <dd><a href="../uses.html" style="color:var(--accent); text-decoration:none">Uses →</a></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+
+<div class="page-nav">
+  <a href="../projects.html">← All projects</a>
+  <a href="nodes.html">Nodes &amp; Mining →</a>
+</div>
+
+<footer>
+  <span>built by </span><span class="accent">jw4gg</span>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
